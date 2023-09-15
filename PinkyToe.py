@@ -13,10 +13,8 @@ class Board:
                 if self.Gameboard[start + i * inc ] != first: return (0)
             return((1 + (ord(first) << 1))) 
         hwon=0
-        for i in range(3): hwon |= check(i,3)
-        for i in range(3): hwon |= check(3*i,1)
-        hwon |= check(0,4)
-        hwon |= check(2,2)
+        for i in range(3): hwon |= check(i,3) | check(3*i,1)
+        hwon |= check(0,4) | check(2,2)
         ret = str(bin(hwon))
         if int(ret[-1]) == 0: return (False,)
         else: return (True,chr((hwon -1) >> 1))       
@@ -24,7 +22,7 @@ m,b = ["X","O"],Board()
 for i in range(len(b.Gameboard)):
     while True:
         b.draw() 
-        if b.place(input(f"\n\nPlayer {m[i%len(m)]}: "),m[i%len(m)]): break   
+        if b.place(input(f"\n\nPlayer {m[i%len(m)]}: "),m[i%len(m)]): break 
     if b.Haswon()[0]: break
-try: print(f"\n\nwinner: {b.Haswon()[1]}")
-except: print("\n\nTie")
+try: h = b.draw() == print(f"\n\nwinner: {b.Haswon()[1]}")
+except: h = b.draw() == print("\n\nTie")
