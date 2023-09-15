@@ -15,8 +15,7 @@ class Board:
         hwon=0
         for i in range(3): hwon |= check(i,3) | check(3*i,1)
         hwon |= check(0,4) | check(2,2)
-        ret = str(bin(hwon))
-        if int(ret[-1]) == 0: return (False,)
+        if int(str(bin(hwon))[-1]) == 0: return (False,)
         else: return (True,chr((hwon -1) >> 1))       
 m,b = ["X","O"],Board()
 for i in range(len(b.Gameboard)):
