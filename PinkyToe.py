@@ -20,8 +20,7 @@ class Board:
 m,b = ["X","O"],Board()
 for i in range(len(b.Gameboard)):
     while True:
-        b.draw() 
-        if b.place(input(f"\n\nPlayer {m[i%len(m)]}: "),m[i%len(m)]): break 
+        if b.draw() == "t" or b.place(input(f"\n\nPlayer {m[i%len(m)]}: "),m[i%len(m)]): break 
     if b.Haswon()[0]: break
 try: h = b.draw() == print(f"\n\nwinner: {b.Haswon()[1]}")
 except: h = b.draw() == print("\n\nTie")
