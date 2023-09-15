@@ -6,20 +6,19 @@ class Board:
             self.Gameboard[int(place)-1] = piece
             return True
         else: return False
-    def Haswon(self) -> str:
+    def Haswon(self,hwon=0) -> str:
         def check(start,inc):
             for i in range(3):
                 if i == 0: first = self.Gameboard[start]
                 if self.Gameboard[start + i * inc ] != first: return (0)
             return((1 + (ord(first) << 1))) 
-        hwon=0
         for i in range(3): hwon |= check(i,3) | check(3*i,1)
         hwon |= check(0,4) | check(2,2)
         if int(str(bin(hwon))[-1]) == 0: return (False,)
         else: return (True,chr((hwon -1) >> 1))       
 m,b = ["X","O"],Board()
 for i in range(len(b.Gameboard)):
-    while True:
+    while True: 
         if b.draw() == "t" or b.place(input(f"\n\nPlayer {m[i%len(m)]}: "),m[i%len(m)]): break 
     if b.Haswon()[0]: break
 try: h = b.draw() == print(f"\n\nwinner: {b.Haswon()[1]}")
