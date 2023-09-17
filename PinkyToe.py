@@ -8,10 +8,8 @@ class Board:
         else: return False
     def Haswon(self,hwon=0) -> str:
         def check(start,inc):
-            for i in range(3):
-                if i == 0: first = self.Gameboard[start]
-                if self.Gameboard[start + i * inc ] != first: return (0)
-            return((1 + (ord(first) << 1))) 
+            if self.Gameboard[start::inc][:3].count(self.Gameboard[0+start]) != len(self.Gameboard[start::inc][:3]): return 0 
+            return((1 + (ord(self.Gameboard[0+start]) << 1))) 
         for i in range(3): hwon |= check(i,3) | check(3*i,1)
         hwon |= check(0,4) | check(2,2)
         if int(str(bin(hwon))[-1]) == 0: return (False,)
