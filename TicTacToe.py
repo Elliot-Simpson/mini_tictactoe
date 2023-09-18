@@ -3,14 +3,14 @@ class Board:
         self.Gameboard = ['1','2','3','4','5','6','7','8','9',]
 
     def draw(self):
-        print("\n",self.Gameboard[0:3])
+        print(f"\n{self.Gameboard[0:3]}")
         print(len(str(self.Gameboard[0:3]))*"-")
         print(self.Gameboard[3:6])
         print(len(str(self.Gameboard[0:3]))*"-")
         print(self.Gameboard[6:9],"\n")
 
     def place(self,place: int,piece: str):
-        if self.Gameboard[place-1] in ['1','2','3','4','5','6','7','8','9',]:
+        if str(place) in [str(i+1) for i in range(9)] and self.Gameboard[place-1] in ['1','2','3','4','5','6','7','8','9',]:
             self.Gameboard[place-1] = piece
             return True
         else: return False
