@@ -6,5 +6,5 @@ class Board:
         for i in range(2): hwon |= check(i,3) | check(2-i*2,3-i*2) | check(3+i*3,1) | check(0+i*2,4-i*2)
         if (num := 0) == 0 and ((eg := (int(str(bin(hwon))[-1]))) == 0) or (num := chr((hwon -1) >> 1)): return (eg,num)
 b = Board()
-while b.draw() == None and (won := b.Haswon())[0] == 0 and b.pcount() != 9: print(b.place(input(f"\n\nPlayer { b.plist[b.pcount()%len(b.plist)] }: "),b.plist[b.pcount()%len(b.plist)]))
-str(b.draw())*0 + f"\n\nwinner: {(won:=b.Haswon())[1]}"*won[0] + "\n\nTie" * (won[0] ^ 1)
+while b.draw() == None and (won := b.Haswon())[0] == 0 and b.pcount() != 9: b.place(input(f"\n\nPlayer { b.plist[b.pcount()%len(b.plist)] }: "),b.plist[b.pcount()%len(b.plist)])
+print(str(b.draw())*0 + f"\n\nwinner: {(won:=b.Haswon())[1]}"*won[0] + "\n\nTie" * (won[0] ^ 1))
