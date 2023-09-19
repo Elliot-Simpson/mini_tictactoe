@@ -10,8 +10,8 @@ class Board:
         print(self.Gameboard[6:9],"\n")
 
     def place(self,place: int,piece: str):
-        if str(place) in [str(i+1) for i in range(9)] and self.Gameboard[place-1] in ['1','2','3','4','5','6','7','8','9',]:
-            self.Gameboard[place-1] = piece
+        if place in ['1','2','3','4','5','6','7','8','9',] and self.Gameboard[int(place)-1] in ['1','2','3','4','5','6','7','8','9',]:
+            self.Gameboard[int(place)-1] = piece
             return True
         else: return False
 
@@ -27,7 +27,6 @@ class Board:
         hwon=0
         for i in range(3):
             hwon |= check(i,3)
-        for i in range(3):
             hwon |= check(3*i,1)
         hwon |= check(0,4)
         hwon |= check(2,2)
@@ -42,7 +41,7 @@ b = Board()
 for i in range(len(b.Gameboard)):
     while True:
         b.draw() 
-        if b.place(int(input(f"Player {m[i%len(m)]}: ")),m[i%len(m)]): break   
+        if b.place(input(f"Player {m[i%len(m)]}: "),m[i%len(m)]): break   
     if b.Haswon()[0]: break
 
 print("\n"*2)
